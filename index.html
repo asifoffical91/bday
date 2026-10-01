@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 14th Birthday, Areeba! ✨❤️</title>
+    <!-- Google Fonts for Aesthetic & Cursive Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #090d16 0%, #17153a 50%, #290b35 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Aesthetic Gift Box Wrapper (Page 1) */
+        .envelope-wrapper {
+            background: radial-gradient(circle, #3d122b 0%, #1b0c1e 100%);
+            border: 1px solid rgba(244, 114, 182, 0.3);
+            border-radius: 28px;
+            padding: 40px 24px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gift-box-graphic {
+            width: 140px;
+            height: 110px;
+            background: #250817;
+            background-image: radial-gradient(rgba(244, 114, 182, 0.25) 1px, transparent 1px);
+            background-size: 14px 14px;
+            margin: 0 auto 20px auto;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            border: 1px solid rgba(244, 114, 182, 0.2);
+        }
+
+        /* Vertical Ribbon */
+        .gift-box-graphic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 55px;
+            width: 30px;
+            background: linear-gradient(90deg, #ec4899, #f472b6, #db2777);
+            box-shadow: 0 0 10px rgba(236, 72, 153, 0.6);
+        }
+
+        /* Horizontal Ribbon */
+        .gift-box-graphic::after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            height: 26px;
+            background: linear-gradient(180deg, #ec4899, #f472b6, #db2777);
+            box-shadow: 0 0 10px rgba(236, 72, 153, 0.6);
+        }
+
+        /* Custom Drawn Aesthetic Horizontal Pink Bow */
+        .gift-center-bow {
+            position: absolute;
+            top: 53px;
+            left: 70px;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 30px;
+            z-index: 10;
+        }
+
+        .bow-wing-left, .bow-wing-right {
+            position: absolute;
+            width: 26px;
+            height: 18px;
+            background: linear-gradient(135deg, #ff85b3, #e6005c);
+            border-radius: 50% 50% 40% 40%;
+            top: 4px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        .bow-wing-left {
+            left: 2px;
+            transform: rotate(-15deg);
+        }
+
+        .bow-wing-right {
+            right: 2px;
+            transform: rotate(15deg);
+        }
+
+        .bow-center-knot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #ffffff, #ffb3d1);
+            border-radius: 50%;
+            top: 7px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 8px rgba(255,255,255,0.8);
+            z-index: 12;
+        }
+
+        .bow-string-left, .bow-string-right {
+            position: absolute;
+            width: 6px;
+            height: 24px;
+            background: linear-gradient(180deg, #ff4d94, #b30047);
+            top: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .bow-string-left {
+            left: 20px;
+            transform: rotate(15deg);
+            border-radius: 0 0 0 3px;
+        }
+
+        .bow-string-right {
+            right: 20px;
+            transform: rotate(-15deg);
+            border-radius: 0 0 3px 0;
+        }
+
+        .envelope-wrapper:hover {
+            transform: translateY(-6px);
+            border-color: rgba(244, 114, 182, 0.6);
+            box-shadow: 0 30px 60px rgba(244, 114, 182, 0.2);
+        }
+
+        .envelope-wrapper h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .envelope-wrapper p {
+            font-size: 13px;
+            color: #cbd5e1;
+            margin-bottom: 24px;
+        }
+
+        .tap-btn {
+            background: linear-gradient(135deg, #f472b6, #db2777);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(219, 39, 119, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .tap-btn:active {
+            transform: scale(0.95);
+        }
+
+        .content-card {
+            display: none;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 28px;
+            padding: 24px 18px;
+            width: 100%;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .content-card::-webkit-scrollbar {
+            width: 4px;
+        }
+        .content-card::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .header-title {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .age-badge {
+            display: inline-block;
+            background: rgba(244, 114, 182, 0.15);
+            color: #f472b6;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 6px;
+            border: 1px solid rgba(244, 114, 182, 0.3);
+        }
+
+        .typing-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 26px;
+            color: #ffffff;
+            margin-bottom: 2px;
+            text-align: center;
+            text-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #f472b6;
+            width: 0;
+            animation: typing 2.5s steps(30, end) forwards, blink 0.75s step-end infinite;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: #f472b6; }
+        }
+
+        .header-title h2 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #ff85b3;
+            margin-top: 2px;
+        }
+
+        .story-box {
+            background: rgba(0, 0, 0, 0.2);
+            border-left: 3px solid #f472b6;
+            padding: 12px 14px;
+            border-radius: 0 12px 12px 0;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #e2e8f0;
+            margin-bottom: 16px;
+        }
+
+        .next-section {
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .next-main-btn {
+            background: linear-gradient(135deg, #f472b6, #db2777);
+            color: white;
+            border: none;
+            padding: 10px 26px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(219, 39, 119, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .next-main-btn:active {
+            transform: scale(0.95);
+        }
+
+        .interactive-section {
+            margin-bottom: 14px;
+        }
+
+        .action-btn {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(244, 114, 182, 0.4);
+        }
+
+        .action-btn span.icon {
+            font-size: 16px;
+            transition: transform 0.3s ease;
+            line-height: 1;
+        }
+
+        .reveal-box {
+            display: none;
+            background: rgba(244, 114, 182, 0.08);
+            border: 1px dashed rgba(244, 114, 182, 0.3);
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 6px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #fbcfe8;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 10px;
+        }
+
+        .restart-sub-btn {
+            background: transparent;
+            border: 1px solid rgba(244, 114, 182, 0.4);
+            color: #fbcfe8;
+            padding: 9px 22px;
+            font-size: 12px;
+            font-weight: 500;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .restart-sub-btn:hover {
+            background: rgba(244, 114, 182, 0.15);
+            border-color: #f472b6;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Audio -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-sensations-1123.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <!-- Page 1: Gift Box Screen -->
+        <div class="envelope-wrapper" id="page1" onclick="goToPage(2)">
+            <div class="gift-box-graphic">
+                <div class="gift-center-bow">
+                    <div class="bow-wing-left"></div>
+                    <div class="bow-wing-right"></div>
+                    <div class="bow-center-knot"></div>
+                    <div class="bow-string-left"></div>
+                    <div class="bow-string-right"></div>
+                </div>
+            </div>
+            <h2>Only Areeba can open this surprise</h2>
+            <p>Tap here to open your gift box ✨</p>
+            <button class="tap-btn">Open Surprise ✨</button>
+        </div>
+
+        <!-- Page 2: Birthday Wish & Main Paragraph -->
+        <div class="content-card" id="page2">
+            <div class="header-title">
+                <div class="age-badge">Turning 14 Today! 🫠❤️</div>
+                <div class="typing-title">Happy Birthday Kuchu Puchu</div>
+                <h2>Areeba ✨❤️️</h2>
+            </div>
+
+            <div class="story-box">
+                Honestly, this bond happened because I never really gave up on it. 😌 You used to say, “Just block me,” but somehow I always managed to stop you. 😂 And somehow, all those random talks, little arguments, and silly moments turned into something we both genuinely enjoy. ✨❤️
+            </div>
+
+            <div class="next-section">
+                <button class="next-main-btn" onclick="goToPage(3)">Next ✨</button>
+            </div>
+
+            <div class="footer-note"></div>
+        </div>
+
+        <!-- Page 3: Special Notes & Options Only -->
+        <div class="content-card" id="page3">
+            <div class="header-title">
+                <div class="age-badge">A Little More For You 🫠❤️</div>
+                <h1 style="font-family: 'Playfair Display', serif; font-size: 22px; color: #fff;">Special Notes</h1>
+                <h2>Tap to reveal 🤍</h2>
+            </div>
+
+            <!-- Two Interactive Options -->
+            <div class="interactive-section">
+                <button class="action-btn" onclick="toggleReveal('reveal1')">
+                    <span>I’m always with you to make you smile...</span>
+                    <span class="icon">✨</span>
+                </button>
+                <div id="reveal1" class="reveal-box">
+                    
+                make you feel special, and remind you to keep going whenever things get tough. 🫠❤️
+                </div>
+            </div>
+
+            <div class="interactive-section">
+                <button class="action-btn" onclick="toggleReveal('reveal2')">
+                    <span>A little dream...</span>
+                    <span class="icon">✨</span>
+                </button>
+                <div id="reveal2" class="reveal-box">
+                    One day, I'll take permission from your mummy😹, and we'll go on a tour together😌.
+                </div>
+            </div>
+
+            <div class="next-section" style="margin-top: 15px;">
+                <button class="next-main-btn" onclick="goToPage(4)">Next ✨</button>
+            </div>
+
+            <div class="footer-note" style="margin-top: 10px;"></div>
+        </div>
+
+        <!-- Page 4: Enhanced Aesthetic Final Page -->
+        <div class="content-card" id="page4">
+            <div class="header-title" style="margin-top: 10px; margin-bottom: 15px;">
+                <div class="age-badge">Get Well Soon</div>
+                <div style="font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: #ffffff; line-height: 1.4; text-shadow: 0 0 12px rgba(244,114,182,0.5);">
+                    Get well soon cutie 🥹🫂
+                </div>
+            </div>
+
+            <div class="story-box" style="text-align: center; border-left: none; border-top: 3px solid #f472b6; border-radius: 12px; font-style: italic; color: #fbcfe8;">
+                "Take good care of yourself, rest up well, and get better soon. Once you're all better, we'll celebrate with a party! ✨"
+            </div>
+
+            <div class="next-section" style="margin-top: 20px;">
+                <button class="restart-sub-btn" onclick="goToPage(1)">🔄 Replay The Surprise</button>
+            </div>
+
+            <div class="footer-note" style="margin-top: 15px;">
+                Made with lots of love and care by Asif. Enjoy your 14th year! 🎈
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const bgMusic = document.getElementById('bgMusic');
+
+        function goToPage(pageNumber) {
+            if (bgMusic.paused) {
+                bgMusic.play().catch(error => {
+                    console.log("Audio play error:", error);
+                });
+            }
+
+            document.getElementById('page1').style.display = 'none';
+            document.getElementById('page2').style.display = 'none';
+            document.getElementById('page3').style.display = 'none';
+            document.getElementById('page4').style.display = 'none';
+
+            document.getElementById('page' + pageNumber).style.display = 'block';
+
+            if (pageNumber === 2) {
+                triggerConfetti();
+            } else if (pageNumber === 4) {
+                triggerGrandEnding();
+            }
+        }
+
+        function toggleReveal(id) {
+            const box = document.getElementById(id);
+            if (box.style.display === 'block') {
+                box.style.display = 'none';
+            } else {
+                box.style.display = 'block';
+            }
+        }
+
+        function triggerConfetti() {
+            var duration = 3 * 1000;
+            var end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 4,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#f472b6', '#ffffff', '#db2777', '#fb7185']
+                });
+                confetti({
+                    particleCount: 4,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#f472b6', '#ffffff', '#db2777', '#fb7185']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+
+        function triggerGrandEnding() {
+            var duration = 4 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 35, spread: 360, ticks: 80, zIndex: 9999 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                var particleCount = 60 * (timeLeft / duration);
+                
+                confetti(Object.assign({}, defaults, { 
+                    particleCount, 
+                    origin: { x: randomInRange(0.1, 0.4), y: Math.random() - 0.2 },
+                    colors: ['#f472b6', '#ffffff', '#ffd700', '#ff4d94', '#9333ea']
+                }));
+                confetti(Object.assign({}, defaults, { 
+                    particleCount, 
+                    origin: { x: randomInRange(0.6, 0.9), y: Math.random() - 0.2 },
+                    colors: ['#f472b6', '#ffffff', '#ffd700', '#ff4d94', '#9333ea']
+                }));
+            }, 250);
+        }
+    </script>
+</body>
+</html>
